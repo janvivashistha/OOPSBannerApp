@@ -1,23 +1,29 @@
 /**
  * OOPS Banner App
  *
- * UC2: Print OOPS in Banner Format using * and spaces
+ * UC4: Print OOPS Banner using Array and Loop
  *
  * @author Janvi Vashistha
- * @version 2.0
+ * @version 4.0
  */
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        System.out.println(" *****   *****   *****   ***** ");
-        System.out.println("*     * *     * *     * *     *");
-        System.out.println("*     * *     * *     * *     *");
-        System.out.println("*     * *     * *     * *     *");
-        System.out.println("*     * *     * *     * *     *");
-        System.out.println("*     * *     * *     * *     *");
-        System.out.println(" *****   *****   *****   ***** ");
+        // Store banner lines in String array
+        String[] banner = {
+                " *****   *****   *****   ***** ",
+                "*     * *     * *     * *     *",
+                "*     * *     * *     * *     *",
+                "*     * *     * *     * *     *",
+                "*     * *     * *     * *     *",
+                "*     * *     * *     * *     *",
+                " *****   *****   *****   ***** "
+        };
 
+        // Print using loop
+        for (String line : banner) {
+            System.out.println(line);
+        }
     }
 }
-
