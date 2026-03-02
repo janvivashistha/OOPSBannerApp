@@ -1,16 +1,37 @@
 /**
  * OOPS Banner App
  *
- * UC6: Using Static Helper Methods
+ * UC7: Store Character Pattern in a Class
  *
  * @author Janvi Vashistha
- * @version 6.0
+ * @version 7.0
  */
 public class OOPSBannerApp {
 
-    // Method to create letter O
-    public static String[] createO() {
-        return new String[]{
+    // Static Inner Class to store character and pattern
+    static class CharacterPatternMap {
+
+        private char character;
+        private String[] pattern;
+
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Create pattern objects
+        CharacterPatternMap O = new CharacterPatternMap('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -18,12 +39,9 @@ public class OOPSBannerApp {
                 "*     *",
                 "*     *",
                 " ***** "
-        };
-    }
+        });
 
-    // Method to create letter P
-    public static String[] createP() {
-        return new String[]{
+        CharacterPatternMap P = new CharacterPatternMap('P', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -31,12 +49,9 @@ public class OOPSBannerApp {
                 "*      ",
                 "*      ",
                 "*      "
-        };
-    }
+        });
 
-    // Method to create letter S
-    public static String[] createS() {
-        return new String[]{
+        CharacterPatternMap S = new CharacterPatternMap('S', new String[]{
                 " ***** ",
                 "*      ",
                 "*      ",
@@ -44,18 +59,22 @@ public class OOPSBannerApp {
                 "      *",
                 "      *",
                 " ***** "
-        };
-    }
+        });
 
-    public static void main(String[] args) {
+        // Word to display
+        String word = "OOPS";
 
-        String[] O = createO();
-        String[] P = createP();
-        String[] S = createS();
+        CharacterPatternMap[] patterns = {O, O, P, S};
 
-        // Combine and print row by row
-        for (int i = 0; i < O.length; i++) {
-            System.out.println(O[i] + "   " + O[i] + "   " + P[i] + "   " + S[i]);
+        // Print banner row by row
+        for (int row = 0; row < 7; row++) {
+            StringBuilder line = new StringBuilder();
+
+            for (CharacterPatternMap pattern : patterns) {
+                line.append(pattern.getPattern()[row]).append("   ");
+            }
+
+            System.out.println(line);
         }
     }
 }
