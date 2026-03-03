@@ -1,37 +1,22 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * OOPS Banner App
  *
- * UC7: Store Character Pattern in a Class
+ * UC8: Use Map for Character Patterns and Render via Function
  *
  * @author Janvi Vashistha
- * @version 7.0
+ * @version 8.0
  */
 public class OOPSBannerApp {
 
-    // Static Inner Class to store character and pattern
-    static class CharacterPatternMap {
+    // Method to initialize character pattern map
+    public static Map<Character, String[]> initializePatterns() {
 
-        private char character;
-        private String[] pattern;
+        Map<Character, String[]> patternMap = new HashMap<>();
 
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public char getCharacter() {
-            return character;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
-    }
-
-    public static void main(String[] args) {
-
-        // Create pattern objects
-        CharacterPatternMap O = new CharacterPatternMap('O', new String[]{
+        patternMap.put('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -41,7 +26,7 @@ public class OOPSBannerApp {
                 " ***** "
         });
 
-        CharacterPatternMap P = new CharacterPatternMap('P', new String[]{
+        patternMap.put('P', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -51,7 +36,7 @@ public class OOPSBannerApp {
                 "*      "
         });
 
-        CharacterPatternMap S = new CharacterPatternMap('S', new String[]{
+        patternMap.put('S', new String[]{
                 " ***** ",
                 "*      ",
                 "*      ",
@@ -61,20 +46,37 @@ public class OOPSBannerApp {
                 " ***** "
         });
 
-        // Word to display
-        String word = "OOPS";
+        return patternMap;
+    }
 
-        CharacterPatternMap[] patterns = {O, O, P, S};
+    // Method to render banner
+    public static void renderBanner(String word, Map<Character, String[]> patternMap) {
 
-        // Print banner row by row
-        for (int row = 0; row < 7; row++) {
+        int height = 7;
+
+        for (int row = 0; row < height; row++) {
+
             StringBuilder line = new StringBuilder();
 
-            for (CharacterPatternMap pattern : patterns) {
-                line.append(pattern.getPattern()[row]).append("   ");
+            for (char ch : word.toCharArray()) {
+
+                String[] pattern = patternMap.get(ch);
+
+                if (pattern != null) {
+                    line.append(pattern[row]).append("   ");
+                }
             }
 
             System.out.println(line);
         }
+    }
+
+    public static void main(String[] args) {
+
+        Map<Character, String[]> patternMap = initializePatterns();
+
+        String word = "OOPS";
+
+        renderBanner(word, patternMap);
     }
 }
